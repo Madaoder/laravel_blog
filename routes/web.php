@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogsController;
 use App\Models\Blogs;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,19 @@ Route::get('/', function () {
     return view('home', compact('blogs'));
 });
 
-Route::get('/add/blog', [BlogsController::class, 'AddBlog']);
-Route::post('/create/blog', [BlogsController::class, 'CreateBlog']);
+Route::get('/my', function () {
+    $user_id = Auth::user()->id;
+    $blogs = Blogs::where('user_id', $user_id)->latest()->get();
+    return view('home', compact('blogs'));
+});
+
+//post route
+Route::get('/add/blog', [BlogsController::class, 'AddBlog'])->middleware('auth');
+Route::post('/create/blog', [BlogsController::class, 'CreateBlog'])->middleware('auth');
 Route::get('/show/blog/{id}', [BlogsController::class, 'ShowBlog']);
-Route::get('/edit/blog/{id}', [BlogsController::class, 'EditBlog']);
-Route::post('/edit/blog/{id}', [BlogsController::class, 'ChangeBlog']);
-Route::get('/delete/blog/{id}', [BlogsController::class, 'DeleteBlog']);
+Route::get('/edit/blog/{id}', [BlogsController::class, 'EditBlog'])->middleware('auth');
+Route::post('/edit/blog/{id}', [BlogsController::class, 'ChangeBlog'])->middleware('auth');
+Route::get('/delete/blog/{id}', [BlogsController::class, 'DeleteBlog'])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

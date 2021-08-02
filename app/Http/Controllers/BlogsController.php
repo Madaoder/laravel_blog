@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Blogs;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class BlogsController extends Controller
@@ -20,6 +21,7 @@ class BlogsController extends Controller
         Blogs::insert([
             'title' => $request->title,
             'content' => $request->content,
+            'user_id' => Auth::user()->id,
             'created_at' => Carbon::now()
         ]);
         return Redirect('/');
@@ -28,7 +30,7 @@ class BlogsController extends Controller
     public function ShowBlog($id)
     {
         $blog = Blogs::find($id);
-        return view('blog.show', compact('blog'));
+        return view('blog.show', compact('blog',));
     }
 
     public function EditBlog($id)
