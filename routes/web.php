@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogsController;
 use App\Models\Blogs;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +23,12 @@ Route::get('/', function () {
 Route::get('/add/blog', [BlogsController::class, 'AddBlog']);
 Route::post('/create/blog', [BlogsController::class, 'CreateBlog']);
 Route::get('/show/blog/{id}', [BlogsController::class, 'ShowBlog']);
+Route::get('/edit/blog/{id}', [BlogsController::class, 'EditBlog']);
+Route::post('/edit/blog/{id}', [BlogsController::class, 'ChangeBlog']);
+Route::get('/delete/blog/{id}', [BlogsController::class, 'DeleteBlog']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';

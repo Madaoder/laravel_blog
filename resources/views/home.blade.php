@@ -1,6 +1,6 @@
 @extends('home_master')
 @section('content')
-<div class="container-xxl py-5">
+<div class="container-xxl py-5 mx-auto">
     @foreach($blogs as $blog)
     <div class="card mb-3" style="width: 30rem;">
         <div class="card-body">

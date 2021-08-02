@@ -14,7 +14,7 @@ class AddUserIdToBlogs extends Migration
     public function up()
     {
         Schema::table('blogs', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users')->ondelete('cascade')->default(1);
+            $table->foreignId('user_id')->nullable()->constrained('users')->ondelete('cascade');
         });
     }
 

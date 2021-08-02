@@ -9,6 +9,12 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{url('add/blog/')}}">add</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{url('login/')}}">login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{url('register/')}}">register</a>
+                </li>
             </ul>
         </div>
     </div>
