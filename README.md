@@ -1,2 +1,6 @@
-#Laravel 8 blog
-basic function of blog
+## Laravel部落格
+### 學習目標
+- CRUD
+
+### 使用工具
+- Laravel
